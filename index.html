@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ UnifyX Bill Maker - Your Digital Sidekick</title>
+    <meta name="description" content="Complete offline billing solution with keyboard shortcuts, analytics, and professional PDF templates">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/desktop.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body data-theme="light" class="theme-light">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="logo">⚡</div>
+            <h2>UnifyX Bill Maker</h2>
+            <div class="loading-spinner"></div>
+            <p>Loading your digital sidekick...</p>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="app hidden">
+        <!-- Desktop Layout -->
+        <div class="desktop-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <a href="#" class="sidebar-brand">
+                        <span class="logo">⚡</span>
+                        <span class="brand-text">UnifyX</span>
+                    </a>
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="icon-menu"></i>
+                    </button>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <div class="nav-section-title">Main</div>
+                        <div class="nav-item">
+                            <a href="#dashboard" class="nav-link active" data-tab="dashboard">
+                                <i class="nav-icon">📊</i>
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="#billing" class="nav-link" data-tab="billing">
+                                <i class="nav-icon">🧾</i>
+                                <span class="nav-text">Billing</span>
+                                <span class="nav-badge">New</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="#customers" class="nav-link" data-tab="customers">
+                                <i class="nav-icon">👥</i>
+                                <span class="nav-text">Customers</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="#products" class="nav-link" data-tab="products">
+                                <i class="nav-icon">📦</i>
+                                <span class="nav-text">Products</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-section">
+                        <div class="nav-section-title">Reports</div>
+                        <div class="nav-item">
+                            <a href="#analytics" class="nav-link" data-tab="analytics">
+                                <i class="nav-icon">📈</i>
+                                <span class="nav-text">Analytics</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="#invoices" class="nav-link" data-tab="invoices">
+                                <i class="nav-icon">📋</i>
+                                <span class="nav-text">Invoices</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-section">
+                        <div class="nav-section-title">Tools</div>
+                        <div class="nav-item">
+                            <a href="#backup" class="nav-link" data-tab="backup">
+                                <i class="nav-icon">💾</i>
+                                <span class="nav-text">Backup</span>
+                            </a>
+                        </div>
+                        <div class="nav-item">
+                            <a href="#settings" class="nav-link" data-tab="settings">
+                                <i class="nav-icon">⚙️</i>
+                                <span class="nav-text">Settings</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Container -->
+            <div class="main-container">
+                <!-- Header -->
+                <header class="header">
+                    <div class="header-left">
+                        <h1 class="header-title" id="pageTitle">Dashboard</h1>
+                        <div class="breadcrumb" id="breadcrumb">
+                            <span class="breadcrumb-item active">Dashboard</span>
+                        </div>
+                    </div>
+                    
+                    <div class="header-center">
+                        <div class="header-search">
+                            <input type="text" placeholder="Search products, customers, invoices..." id="globalSearch">
+                            <i class="header-search-icon">🔍</i>
+                        </div>
+                    </div>
+                    
+                    <div class="header-right">
+                        <button class="header-action" id="calculatorBtn" title="Calculator (F2)">
+                            🧮
+                        </button>
+                        <button class="header-action" id="shortcutsBtn" title="Shortcuts (F1)">
+                            ⌨️
+                        </button>
+                        <button class="header-action" id="themeToggle" title="Toggle Theme (Alt+D)">
+                            🌙
+                        </button>
+                        <button class="header-action" id="notificationBtn" title="Notifications">
+                            🔔
+                            <span class="badge">3</span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <!-- Dashboard Tab -->
+                    <div id="dashboard-tab" class="tab-content active">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-header">
+                                    <h3 class="stat-title">Total Revenue</h3>
+                                    <div class="stat-icon">💰</div>
+                                </div>
+                                <div class="stat-value" id="totalRevenue">₹0</div>
+                                <div class="stat-change positive">
+                                    <span class="stat-change-icon">↗️</span>
+                                    <span>+12.5% from last month</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-header">
+                                    <h3 class="stat-title">Total Invoices</h3>
+                                    <div class="stat-icon">🧾</div>
+                                </div>
+                                <div class="stat-value" id="totalInvoices">0</div>
+                                <div class="stat-change positive">
+                                    <span class="stat-change-icon">↗️</span>
+                                    <span>+8.2% from last month</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-header">
+                                    <h3 class="stat-title">Total Customers</h3>
+                                    <div class="stat-icon">👥</div>
+                                </div>
+                                <div class="stat-value" id="totalCustomers">0</div>
+                                <div class="stat-change positive">
+                                    <span class="stat-change-icon">↗️</span>
+                                    <span>+15.3% from last month</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-header">
+                                    <h3 class="stat-title">Total Products</h3>
+                                    <div class="stat-icon">📦</div>
+                                </div>
+                                <div class="stat-value" id="totalProducts">0</div>
+                                <div class="stat-change positive">
+                                    <span class="stat-change-icon">↗️</span>
+                                    <span>+5.7% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="cards-grid-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Quick Actions</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="flex flex-col gap-sm">
+                                        <button class="btn btn-primary w-full" onclick="window.UnifyXApp.switchTab('billing')">
+                                            🧾 Create New Invoice
+                                        </button>
+                                        <button class="btn btn-secondary w-full" onclick="window.UnifyXApp.switchTab('customers')">
+                                            👥 Add Customer
+                                        </button>
+                                        <button class="btn btn-secondary w-full" onclick="window.UnifyXApp.switchTab('products')">
+                                            📦 Add Product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Recent Activity</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="recentActivity">
+                                        <p class="text-secondary">No recent activity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Tab -->
+                    <div id="billing-tab" class="tab-content">
+                        <div class="billing-interface">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Create Invoice</h3>
+                                    <div class="flex gap-sm">
+                                        <button class="btn btn-sm btn-secondary" id="multiBillBtn">Multi-Bill</button>
+                                        <button class="btn btn-sm btn-secondary" id="bulkEntryBtn">Bulk Entry</button>
+                                        <button class="btn btn-sm btn-success" id="generateInvoiceBtn">Generate</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Customer Selection -->
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Customer *</label>
+                                            <input type="text" class="input" id="customerSearch" placeholder="Search or add customer...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Invoice Date *</label>
+                                            <input type="date" class="input" id="invoiceDate" value="">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Items Table -->
+                                    <div class="data-table-container">
+                                        <div class="data-table-header">
+                                            <h4 class="data-table-title">Invoice Items</h4>
+                                            <button class="btn btn-sm btn-primary" id="addItemBtn">+ Add Item</button>
+                                        </div>
+                                        <table class="data-table" id="invoiceItemsTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Rate</th>
+                                                    <th>Tax %</th>
+                                                    <th>Amount</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="invoiceItemsBody">
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-secondary">No items added</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <!-- Invoice Summary -->
+                                    <div class="invoice-summary">
+                                        <div class="summary-row">
+                                            <span>Subtotal:</span>
+                                            <span id="invoiceSubtotal">₹0.00</span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span>Tax:</span>
+                                            <span id="invoiceTax">₹0.00</span>
+                                        </div>
+                                        <div class="summary-row total">
+                                            <span>Total:</span>
+                                            <span id="invoiceTotal">₹0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other tabs content will be dynamically loaded -->
+                    <div id="customers-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Customer Management</h3>
+                                <button class="btn btn-primary" id="addCustomerBtn">+ Add Customer</button>
+                            </div>
+                            <div class="card-body">
+                                <div id="customersContainer">
+                                    <p class="text-center text-secondary">Loading customers...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="products-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Product Management</h3>
+                                <button class="btn btn-primary" id="addProductBtn">+ Add Product</button>
+                            </div>
+                            <div class="card-body">
+                                <div id="productsContainer">
+                                    <p class="text-center text-secondary">Loading products...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="analytics-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Business Analytics</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="analyticsContainer">
+                                    <p class="text-center text-secondary">Loading analytics...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="invoices-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Invoice History</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="invoicesContainer">
+                                    <p class="text-center text-secondary">Loading invoices...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="backup-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Backup & Restore</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="backupContainer">
+                                    <div class="flex gap-md">
+                                        <button class="btn btn-primary" id="createBackupBtn">Create Backup</button>
+                                        <button class="btn btn-secondary" id="restoreBackupBtn">Restore Backup</button>
+                                        <button class="btn btn-secondary" id="exportDataBtn">Export Data</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="settings-tab" class="tab-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Application Settings</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="settingsContainer">
+                                    <p class="text-center text-secondary">Loading settings...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Mobile Layout -->
+        <div class="mobile-layout mobile-only">
+            <!-- Mobile Header -->
+            <header class="header">
+                <div class="header-brand">
+                    <span class="logo">⚡</span>
+                    <span class="brand-text">UnifyX</span>
+                </div>
+                <div class="header-actions">
+                    <button class="header-action" id="mobileThemeToggle">🌙</button>
+                    <button class="header-action" id="mobileNotificationBtn">🔔</button>
+                </div>
+            </header>
+
+            <!-- Mobile Content -->
+            <main class="main-content">
+                <div id="mobileContent">
+                    <!-- Mobile content will be dynamically loaded -->
+                </div>
+            </main>
+
+            <!-- Mobile Navigation -->
+            <nav class="mobile-nav">
+                <div class="mobile-nav-items">
+                    <a href="#dashboard" class="mobile-nav-item active" data-tab="dashboard">
+                        <i class="mobile-nav-icon">📊</i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#billing" class="mobile-nav-item" data-tab="billing">
+                        <i class="mobile-nav-icon">🧾</i>
+                        <span>Billing</span>
+                    </a>
+                    <a href="#customers" class="mobile-nav-item" data-tab="customers">
+                        <i class="mobile-nav-icon">👥</i>
+                        <span>Customers</span>
+                    </a>
+                    <a href="#products" class="mobile-nav-item" data-tab="products">
+                        <i class="mobile-nav-icon">📦</i>
+                        <span>Products</span>
+                    </a>
+                    <a href="#more" class="mobile-nav-item" data-tab="more">
+                        <i class="mobile-nav-icon">⚙️</i>
+                        <span>More</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Modals and Overlays -->
+    <div id="modalContainer"></div>
+    <div id="toastContainer" class="toast-container top-right"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/core/config.js"></script>
+    <script src="assets/js/core/constants.js"></script>
+    <script src="assets/js/core/app.js"></script>
+    <script src="assets/js/modules/dataManager.js"></script>
+    <script src="assets/js/modules/businessManager.js"></script>
+    <script src="assets/js/modules/productManager.js"></script>
+    <script src="assets/js/modules/customerManager.js"></script>
+    <script src="assets/js/modules/billingEngine.js"></script>
+    <script src="assets/js/modules/pdfGenerator.js"></script>
+    <script src="assets/js/modules/analytics.js"></script>
+    <script src="assets/js/modules/keyboard.js"></script>
+    <script src="assets/js/modules/backup.js"></script>
+    <script src="assets/js/modules/ui.js"></script>
+
+    <!-- Initialize App -->
+    <script>
+        // Initialize UnifyX Bill Maker
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('app').classList.remove('hidden');
+                
+                // Initialize app
+                if (window.UnifyXApp) {
+                    window.UnifyXApp.initialize();
+                }
+                
+                console.log('⚡ UnifyX Bill Maker loaded successfully!');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+/**
+ * ⚡️ UnifyX Bill Maker - Theme System
+ * Complete theme management with light/dark/auto modes
+ * Author: Ved Mangukiya
+ * Version: 1.0.0
+ */
+
+:root {
+    /* Primary Colors */
+    --primary-50: #eef2ff;
+    --primary-100: #e0e7ff;
+    --primary-500: #6366f1;
+    --primary-600: #4f46e5;
+    --primary-700: #4338ca;
+    --primary-900: #312e81;
+    
+    /* Semantic Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+    
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme (Default) */
+[data-theme="light"], :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-accent: var(--primary-50);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-tertiary: #94a3b8;
+    --text-inverse: #ffffff;
+    
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e1;
+    --border-accent: #c7d2fe;
+    
+    --surface: #ffffff;
+    --surface-hover: #f8fafc;
+    --surface-active: #f1f5f9;
+    
+    /* Component specific */
+    --sidebar-bg: var(--bg-primary);
+    --header-bg: var(--bg-primary);
+    --modal-bg: var(--bg-primary);
+    --input-bg: var(--bg-primary);
+    --card-bg: var(--bg-primary);
+    
+    /* Shadows */
+    --shadow-color: 0 0 0;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-accent: rgba(99, 102, 241, 0.1);
+    
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-inverse: #0f172a;
+    
+    --border-primary: #334155;
+    --border-secondary: #475569;
+    --border-accent: #6366f1;
+    
+    --surface: #1e293b;
+    --surface-hover: #334155;
+    --surface-active: #475569;
+    
+    /* Component specific */
+    --sidebar-bg: var(--bg-secondary);
+    --header-bg: var(--bg-secondary);
+    --modal-bg: var(--bg-secondary);
+    --input-bg: var(--bg-tertiary);
+    --card-bg: var(--bg-secondary);
+    
+    /* Shadows */
+    --shadow-color: 0 0 0;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
+/* Theme Transition */
+* {
+    transition: background-color var(--transition), 
+                border-color var(--transition), 
+                color var(--transition);
+}
+
+/* Component Theme Variants */
+.theme-light {
+    color-scheme: light;
+}
+
+.theme-dark {
+    color-scheme: dark;
+}
+
+/* Print Styles */
+@media print {
+    [data-theme="dark"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #ffffff;
+        --text-primary: #000000;
+        --text-secondary: #666666;
+        --border-primary: #cccccc;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-primary: #000000;
+        --text-secondary: var(--text-primary);
+    }
+    
+    [data-theme="dark"] {
+        --border-primary: #ffffff;
+        --text-secondary: var(--text-primary);
+    }
+}
+
+/* Custom Properties for Components */
+.btn {
+    --btn-bg: var(--primary-500);
+    --btn-color: var(--text-inverse);
+    --btn-border: var(--primary-500);
+    --btn-hover-bg: var(--primary-600);
+    --btn-hover-border: var(--primary-600);
+    --btn-active-bg: var(--primary-700);
+}
+
+.btn-secondary {
+    --btn-bg: var(--surface);
+    --btn-color: var(--text-primary);
+    --btn-border: var(--border-primary);
+    --btn-hover-bg: var(--surface-hover);
+}
+
+.input {
+    --input-bg: var(--input-bg);
+    --input-border: var(--border-primary);
+    --input-color: var(--text-primary);
+    --input-placeholder: var(--text-tertiary);
+    --input-focus-border: var(--primary-500);
+}
+
+.card {
+    --card-bg: var(--card-bg);
+    --card-border: var(--border-primary);
+    --card-shadow: var(--shadow);
+}
+
+.modal {
+    --modal-bg: var(--modal-bg);
+    --modal-border: var(--border-primary);
+    --modal-shadow: var(--shadow-xl);
+    --modal-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .modal {
+    --modal-backdrop: rgba(0, 0, 0, 0.8);
+}
+
+.dropdown {
+    --dropdown-bg: var(--surface);
+    --dropdown-border: var(--border-primary);
+    --dropdown-shadow: var(--shadow-lg);
+}
+
+.table {
+    --table-bg: var(--bg-primary);
+    --table-border: var(--border-primary);
+    --table-stripe: var(--bg-secondary);
+    --table-hover: var(--surface-hover);
+}
+
+.sidebar {
+    --sidebar-bg: var(--sidebar-bg);
+    --sidebar-border: var(--border-primary);
+    --sidebar-item-hover: var(--surface-hover);
+    --sidebar-item-active: var(--bg-accent);
+}
+
+.header {
+    --header-bg: var(--header-bg);
+    --header-border: var(--border-primary);
+    --header-shadow: var(--shadow-sm);
+}
+
+.toast {
+    --toast-bg: var(--surface);
+    --toast-border: var(--border-primary);
+    --toast-shadow: var(--shadow-lg);
+}
+
+.toast-success {
+    --toast-bg: var(--success);
+    --toast-color: white;
+}
+
+.toast-error {
+    --toast-bg: var(--error);
+    --toast-color: white;
+}
+
+.toast-warning {
+    --toast-bg: var(--warning);
+    --toast-color: white;
+}
+
+.toast-info {
+    --toast-bg: var(--info);
+    --toast-color: white;
+}
