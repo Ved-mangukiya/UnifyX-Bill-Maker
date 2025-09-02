@@ -1,0 +1,394 @@
+/**
+ * ⚡️ UnifyX Bill Maker - PDF Template Styles
+ * Styles for invoice PDF templates
+ * Author: Ved Mangukiya
+ * Version: 1.0.0
+ */
+
+/* Base PDF Template Styles */
+.pdf-template {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Modern Template */
+.modern-template {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modern-header {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 2rem;
+}
+
+.modern-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Classic Template */
+.classic-template {
+    border: 2px solid #000;
+    font-family: 'Times New Roman', serif;
+}
+
+.classic-header {
+    text-align: center;
+    padding: 2rem;
+    border-bottom: 2px solid #000;
+}
+
+.classic-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.classic-table th,
+.classic-table td {
+    border: 1px solid #000;
+    padding: 0.5rem;
+}
+
+/* Corporate Template */
+.corporate-template {
+    font-family: Arial, sans-serif;
+}
+
+.corporate-header {
+    background: #1e40af;
+    color: white;
+    padding: 1.5rem;
+}
+
+.corporate-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.corporate-table th {
+    background: #1e40af;
+    color: white;
+    padding: 1rem;
+}
+
+/* Creative Template */
+.creative-template {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.creative-header {
+    background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+    color: white;
+    padding: 2rem;
+}
+
+/* Minimal Template */
+.minimal-template {
+    padding: 2rem;
+    color: #2d3748;
+}
+
+.minimal-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Common Template Elements */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.business-info h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.invoice-number {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #6366f1;
+}
+
+.customer-section {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.items-table th {
+    background: #f8fafc;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.items-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.totals-section {
+    margin-top: 2rem;
+}
+
+.totals-table {
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.totals-table td {
+    padding: 0.5rem 0;
+    text-align: right;
+}
+
+.total-row {
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-top: 2px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
+.invoice-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Print Styles */
+@media print {
+    .pdf-template {
+        box-shadow: none;
+        max-width: none;
+        margin: 0;
+    }
+    
+    .modern-template,
+    .creative-template {
+        border-radius: 0;
+    }
+    
+    .invoice-header {
+        page-break-inside: avoid;
+    }
+    
+    .items-table {
+        page-break-inside: auto;
+    }
+    
+    .items-table tr {
+        page-break-inside: avoid;
+    }
+    
+    .totals-section {
+        page-break-inside: avoid;
+    }
+    
+    @page {
+        margin: 1cm;
+        size: A4;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pdf-template {
+        margin: 0;
+        box-shadow: none;
+    }
+    
+    .invoice-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .items-table {
+        font-size: 0.875rem;
+    }
+    
+    .items-table th,
+    .items-table td {
+        padding: 0.5rem;
+    }
+    
+    /* Hide less important columns on mobile */
+    .items-table .mobile-hide {
+        display: none;
+    }
+}
+
+/* Template Selection UI */
+.template-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.template-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.template-card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.template-card.active {
+    border-color: #6366f1;
+    background: #f0f4ff;
+}
+
+.template-preview {
+    width: 100%;
+    height: 150px;
+    background: #f8fafc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.template-name {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.template-description {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Invoice Preview */
+.invoice-preview {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.preview-header {
+    background: #f8fafc;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-title {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.preview-content {
+    padding: 2rem;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Loading States */
+.template-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #64748b;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error States */
+.template-error {
+    text-align: center;
+    padding: 2rem;
+    color: #dc2626;
+}
+
+.error-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Utility Classes */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.text-primary { color: #6366f1; }
+.text-success { color: #10b981; }
+.text-warning { color: #f59e0b; }
+.text-error { color: #ef4444; }
+
+.bg-primary { background-color: #6366f1; }
+.bg-light { background-color: #f8fafc; }
+
+.border-primary { border-color: #6366f1; }
+.border-light { border-color: #e2e8f0; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-5 { margin-bottom: 1.25rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.p-5 { padding: 1.25rem; }
+.p-6 { padding: 1.5rem; }

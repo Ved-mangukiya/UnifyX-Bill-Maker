@@ -1,0 +1,86 @@
+{
+  "rules": {
+    "required": {
+      "message": "This field is required",
+      "validator": "required"
+    },
+    "email": {
+      "message": "Please enter a valid email address",
+      "validator": "email",
+      "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+    },
+    "phone": {
+      "message": "Please enter a valid phone number",
+      "validator": "phone", 
+      "pattern": "^[+]?[(]?[\\d\\s\\-()]{10,}$"
+    },
+    "gstin": {
+      "message": "Please enter a valid GSTIN",
+      "validator": "gstin",
+      "pattern": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
+    },
+    "number": {
+      "message": "Please enter a valid number",
+      "validator": "number"
+    },
+    "positive": {
+      "message": "Value must be positive",
+      "validator": "positive"
+    },
+    "minLength": {
+      "message": "Minimum {min} characters required",
+      "validator": "minLength"
+    },
+    "maxLength": {
+      "message": "Maximum {max} characters allowed",
+      "validator": "maxLength"
+    },
+    "min": {
+      "message": "Value must be at least {min}",
+      "validator": "min"
+    },
+    "max": {
+      "message": "Value cannot exceed {max}",
+      "validator": "max"
+    },
+    "url": {
+      "message": "Please enter a valid URL",
+      "validator": "url"
+    },
+    "alphanumeric": {
+      "message": "Only letters and numbers are allowed",
+      "validator": "alphanumeric",
+      "pattern": "^[a-zA-Z0-9]+$"
+    },
+    "alphabetic": {
+      "message": "Only letters are allowed",
+      "validator": "alphabetic",
+      "pattern": "^[a-zA-Z]+$"
+    },
+    "numeric": {
+      "message": "Only numbers are allowed",
+      "validator": "numeric",
+      "pattern": "^[0-9]+$"
+    }
+  },
+  "fieldTypes": {
+    "name": ["required", "minLength:2", "maxLength:100"],
+    "email": ["email"],
+    "phone": ["phone"],
+    "gstin": ["gstin"],
+    "address": ["maxLength:500"],
+    "price": ["required", "positive", "number"],
+    "quantity": ["required", "positive", "number"],
+    "percentage": ["number", "min:0", "max:100"],
+    "invoiceNumber": ["required", "alphanumeric"],
+    "description": ["maxLength:1000"]
+  },
+  "customMessages": {
+    "customer.name": "Customer name is required",
+    "product.name": "Product name is required", 
+    "product.price": "Please enter a valid product price",
+    "invoice.date": "Invoice date is required",
+    "business.name": "Business name is required",
+    "business.gstin": "Valid GSTIN is required for your business"
+  }
+}
