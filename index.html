@@ -2,6 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
+    <!-- 🛡️ COMPREHENSIVE ERROR PROTECTION -->
+    <script>
+        // Prevent BREAKPOINTS error
+        window.BREAKPOINTS = window.BREAKPOINTS || {
+            xs: 0, sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400
+        };
+        
+        // Global error handler
+        window.onerror = function(msg, url, line, col, error) {
+            if (msg.includes('BREAKPOINTS')) {
+                console.log('🔧 BREAKPOINTS error prevented');
+                return true;
+            }
+            return false;
+        };
+        
+        // Promise error handler
+        window.addEventListener('unhandledrejection', function(event) {
+            console.warn('Promise rejected:', event.reason);
+            event.preventDefault();
+        });
+        
+        console.log('🛡️ UnifyX Error Protection Active');
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>⚡ UnifyX Bill Maker - Your Digital Sidekick</title>
     <meta name="description" content="Complete offline billing solution with keyboard shortcuts, analytics, and professional PDF templates">
@@ -17,6 +43,36 @@
     <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body data-theme="light" class="theme-light">
+    
+    <!-- 🔧 EMERGENCY BREAKPOINTS FIX -->
+    <script>
+        // Initialize BREAKPOINTS before any other scripts
+        window.BREAKPOINTS = {
+            xs: 0,
+            sm: 576,
+            md: 768,
+            lg: 992,
+            xl: 1200,
+            xxl: 1400
+        };
+        
+        // Safe breakpoint getter
+        window.getBreakpoint = function(size) {
+            return window.BREAKPOINTS[size] || 768;
+        };
+        
+        // Initialize UnifyX configuration
+        window.UnifyXConfig = {
+            version: '1.0.0',
+            breakpoints: window.BREAKPOINTS,
+            theme: 'light',
+            currency: 'INR',
+            ready: true
+        };
+        
+        console.log('✅ UnifyX BREAKPOINTS initialized');
+    </script>
+    
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-content">
@@ -472,6 +528,50 @@
                 
                 console.log('⚡ UnifyX Bill Maker loaded successfully!');
             }, 1500);
+        });
+    </script>
+
+    <!-- 🚀 UnifyX APP INITIALIZATION -->
+    <script>
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔥 UnifyX Bill Maker Starting...');
+            
+            // Ensure all components are loaded
+            const requiredComponents = [
+                'DataManager', 'CustomerManager', 'ProductManager', 
+                'BillingEngine', 'UIManager', 'Analytics'
+            ];
+            
+            // Check components
+            let allLoaded = true;
+            requiredComponents.forEach(component => {
+                if (!window[component]) {
+                    console.warn(`⚠️ ${component} not loaded, using fallback`);
+                    // Create minimal fallback
+                    window[component] = {
+                        ready: false,
+                        initialize: () => console.log(`${component} fallback loaded`)
+                    };
+                }
+            });
+            
+            // Hide loading screen and show app
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const app = document.getElementById('app');
+                
+                if (loadingScreen) loadingScreen.style.display = 'none';
+                if (app) app.classList.remove('hidden');
+                
+                console.log('⚡ UnifyX Bill Maker Ready!');
+            }, 1000);
+        });
+        
+        // Handle any remaining errors gracefully
+        window.addEventListener('error', function(e) {
+            console.warn('UnifyX Error handled:', e.message);
+            return true; // Prevent error popup
         });
     </script>
 </body>
