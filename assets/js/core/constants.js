@@ -37,14 +37,10 @@ class AppConstants {
 
         // UI Constants
         this.UI = Object.freeze({
+            BREAKPOINTS: window.BREAKPOINTS || { mobile: 768, tablet: 1024, desktop: 1200 },
             THEMES: ['light', 'dark', 'auto'],
             LANGUAGES: ['en', 'hi', 'gu'],
             DEVICE_TYPES: ['mobile', 'tablet', 'desktop'],
-            BREAKPOINTS: {
-                MOBILE: 768,
-                TABLET: 1024,
-                DESKTOP: 1200
-            },
             ANIMATION_SPEEDS: {
                 FAST: 150,
                 NORMAL: 250,

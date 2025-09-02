@@ -465,15 +465,15 @@ class UnifyXApp {
      * Detect device type
      */
     detectDeviceType() {
+        const breakpoints = window.BREAKPOINTS || { mobile: 768, tablet: 1024 };
         const width = window.innerWidth;
-        if (width < AppConstants.UI.BREAKPOINTS.MOBILE) {
+        if (width < breakpoints.md) {
             this.state.deviceType = 'mobile';
-        } else if (width < AppConstants.UI.BREAKPOINTS.TABLET) {
+        } else if (width < breakpoints.lg) {
             this.state.deviceType = 'tablet';
         } else {
             this.state.deviceType = 'desktop';
         }
-        
         document.body.setAttribute('data-device', this.state.deviceType);
     }
 
